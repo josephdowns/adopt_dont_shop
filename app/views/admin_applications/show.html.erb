@@ -10,9 +10,11 @@
       <% end %>
   <% elsif ap.approved == false %>
     <h3><%= pet.name %></h3>
-    <p>Application Rejected</p>
+    <p>Pet Rejected</p>
   <% else %>
     <h3><%= pet.name %></h3>
-    <p>Application Approved</p>
+    <p>Pet Approved</p>
   <% end %>
 <% end %><br>
+
+<p><%= "Application #{@application.status}" %></p>

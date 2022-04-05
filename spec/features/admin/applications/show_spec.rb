@@ -20,12 +20,12 @@ end
       click_on "Search"
       click_button "Adopt #{@scrappy.name}"
       visit "/admin/applications/#{@application.id}"
-      expect(page).to have_no_content("Application Approved")
+      expect(page).to have_no_content("Pet Approved")
       click_button "Approve Application for Scooby"
       expect(current_path).to eq("/admin/applications/#{@application.id}")
       expect(page).to have_button("Approve Application for Scrappy")
       expect(page).to have_no_button("Approve Application for Scooby")
-      expect(page).to have_content("Application Approved")
+      expect(page).to have_content("Pet Approved")
     end
 
     it "denies a pet for adoption" do
@@ -37,14 +37,14 @@ end
       click_on "Search"
       click_button "Adopt #{@scrappy.name}"
       visit "/admin/applications/#{@application.id}"
-      expect(page).to have_no_content("Application Approved")
+      expect(page).to have_no_content("Pet Approved")
       click_button "Reject Application for Scooby"
       # save_and_open_page
       expect(current_path).to eq("/admin/applications/#{@application.id}")
       expect(page).to have_button("Approve Application for Scrappy")
       expect(page).to have_no_button("Approve Application for Scooby")
-      expect(page).to have_content("Application Rejected")
-      expect(page).to have_no_content("Application Approved")
+      expect(page).to have_content("Pet Rejected")
+      expect(page).to have_no_content("Pet Approved")
     end
 
     it "approving/rejecting a pet on one application has no effect on other applications" do
@@ -67,8 +67,25 @@ end
       click_button "Adopt #{@scooby.name}"
 
       visit "/admin/applications/#{@application_2.id}"
-      expect(page).to have_no_content("Application Rejected")
+      expect(page).to have_no_content("Pet Rejected")
+    end
 
+    it 'approves application if all pets are approved' do
+      visit "/applications/#{@application.id}"
+
+      fill_in("search", with: "Scooby")
+      click_on "Search"
+      click_button "Adopt #{@scooby.name}"
+
+      fill_in("search", with: "Scrappy")
+      click_on "Search"
+      click_button "Adopt #{@scrappy.name}"
+
+      visit "/admin/applications/#{@application.id}"
+      click_button "Approve Application for Scooby"
+      expect(page).to have_no_content("Application Approved")
+      click_button "Approve Application for Scrappy"
+      expect(page).to have_content("Application Approved")
     end
   end
 
