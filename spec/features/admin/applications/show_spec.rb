@@ -87,6 +87,24 @@ end
       click_button "Approve Application for Scrappy"
       expect(page).to have_content("Application Approved")
     end
+
+    it 'rejects application if one or more pets are rejected' do
+      visit "/applications/#{@application.id}"
+
+      fill_in("search", with: "Scooby")
+      click_on "Search"
+      click_button "Adopt #{@scooby.name}"
+
+      fill_in("search", with: "Scrappy")
+      click_on "Search"
+      click_button "Adopt #{@scrappy.name}"
+
+      visit "/admin/applications/#{@application.id}"
+      click_button "Reject Application for Scooby"
+      expect(page).to have_no_content("Application Rejected")
+      click_button "Approve Application for Scrappy"
+      expect(page).to have_content("Application Rejected")
+    end
   end
 
 end
