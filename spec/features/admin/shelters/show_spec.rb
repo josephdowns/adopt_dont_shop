@@ -28,7 +28,7 @@ RSpec.describe "AdminShelters", type: :feature do
       expect(page).to have_content(@shelter_1.city)
       expect(page).to_not have_content(@shelter_3.name)
     end
-  end
+
 
     it "shows a section with statistics" do
       visit "/admin/shelters/#{@shelter_3.id}"
@@ -65,4 +65,14 @@ RSpec.describe "AdminShelters", type: :feature do
       end
     end
 
+    it "links me to the application" do
+      visit "/admin/shelters/#{@shelter_3.id}"
+
+      within('#action') do
+        click_on "#{@rascal.name}"
+      end
+
+      expect(current_path).to eq("/admin/applications/#{@app1.id}")
+    end
+  end
 end

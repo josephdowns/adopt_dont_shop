@@ -10,5 +10,5 @@
 <h4>Action Required</h4>
 <div id='action'>
   <% @pets_applied_for.each do |pet| %>
-    <%= pet.name %>
+    <%= link_to "#{pet.name}", "/admin/applications/#{pet.applications.first.id}" %>
   <% end %></div>
