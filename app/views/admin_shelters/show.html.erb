@@ -6,3 +6,9 @@
 <h4><%= "Some quick stats about #{@shelter_info.first.name}:" %> </h4>
 <p>Adoptable Pets: <%= "#{@adoptablepetscount}" %></p>
 <p>Average Age of Adoptable Pets: <%= "#{@avg_age}" %></p>
+<br><br>
+<h4>Action Required</h4>
+<div id='action'>
+  <% @pets_applied_for.each do |pet| %>
+    <%= pet.name %>
+  <% end %></div>
