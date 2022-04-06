@@ -5,11 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+Pet.destroy_all
+Shelter.destroy_all
 shelter1 = Shelter.create(name: "Pets Are Us", street: "345 First St", city: "Narshe, WOB", zip: 98765, foster_program: true , rank: 3)
-shelter2 = Shelter.create(name: 'Aurora shelter', street: "500 Second St" city: 'Aurora, CO', zip: 98765, foster_program: false, rank: 9)
-shelter3 = Shelter.create(name: 'RGV animal shelter', street: "304 Third St" city: 'Harlingen, TX', zip: 98875, foster_program: false, rank: 5)
-shelter4 = Shelter.create(name: 'Fancy pets of Colorado', street: "4675 Fourth St" city: 'Denver, CO', zip: 98765, foster_program: true, rank: 10)
+shelter2 = Shelter.create(name: 'Aurora shelter', street: "500 Second St", city: 'Aurora, CO', zip: 98765, foster_program: false, rank: 9)
+shelter3 = Shelter.create(name: 'RGV animal shelter', street: "304 Third St", city: 'Harlingen, TX', zip: 98875, foster_program: false, rank: 5)
+shelter4 = Shelter.create(name: 'Fancy pets of Colorado', street: "4675 Fourth St", city: 'Denver, CO', zip: 98765, foster_program: true, rank: 10)
 
 shelter1.pets.create(name: 'Mr. Pirate', breed: 'tuxedo shorthair', age: 5, adoptable: true)
 shelter1.pets.create(name: 'Clawdia', breed: 'shorthair', age: 3, adoptable: true)
