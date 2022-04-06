@@ -43,3 +43,4 @@ The project home page and requirements can be found [here](https://github.com/tu
 From the main page, the user will be able to navigate through adoption *Shelters* and their *Pets*, as well as *Veterinarian Offices* and their *Veterinarians*. The user can search for *pets* to create and submit an *application* to adopt one or more *pets*. An Admin can then approve or reject an application (from /admin/applications/*:id*). Approval of an *application* will make a *pet* un-adoptable on other *applications*.
 
 ## Database Schema
+<img width="1627" alt="Screen Shot 2022-04-06 at 2 22 20 PM" src="https://user-images.githubusercontent.com/93014155/162067045-947350d1-54ef-4030-a26f-b9f826dada0e.png">
