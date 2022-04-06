@@ -150,9 +150,10 @@ end
       click_button "Approve Application for Scooby"
 
       visit "/admin/applications/#{@application_2.id}"
-      expect(page).to have_no_button("Approve application for Scooby")
-      expect(page).to have_content("Scooby has been approved for adoption")
-      expect(page).to have_button("Reject application for Scooby")      
+      save_and_open_page
+      expect(page).to have_no_button("Approve Application for Scooby")
+      expect(page).to have_content("Pet has been approved for adoption")
+      expect(page).to have_button("Reject Application for Scooby")
     end
   end
 

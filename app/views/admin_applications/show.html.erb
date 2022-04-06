@@ -2,9 +2,13 @@
   <% ap =  pet.application_pets.find { |ap| ap.application_id == @application.id } %>
   <% if ap.approved == nil %>
     <h3><%= pet.name %></h3>
+    <% if pet.adoptable %>
     <p><%= form_with url: "/admin/applications/#{@application.id}?approved=true", local: true do |form| %>
       <%= form.hidden_field :pet_id, value: "#{pet.id}" %>
         <%= form.submit "Approve Application for #{pet.name}" %></p>
+      <% end %>
+      <% else %>
+      <p>Pet has been approved for adoption</p>
       <% end %>
     <p><%= form_with url: "/admin/applications/#{@application.id}?approved=false", local: true do |form| %>
       <%= form.hidden_field :pet_id, value: "#{pet.id}" %>
