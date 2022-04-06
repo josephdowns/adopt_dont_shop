@@ -6,7 +6,7 @@ before :each do
   @scooby = Pet.create!(name: 'Scooby', age: 2, breed: 'Great Dane', adoptable: true, shelter_id: @shelter.id)
   @scrappy = Pet.create!(name: "Scrappy", age: 3, breed: 'Pug', adoptable: true, shelter_id: @shelter.id)
   @application = Application.create!(status: "In Progress", name: "Murmuring Savannah", street: '123 Main',city: 'Leadville', state: 'CO',
-    zip: 11111, description: "")
+    zip: 11111, description: "I have an acre of grass.")
   @application_2 = Application.create!(status: "In Progress", name: "Willy", street: '555 Circle Dr',city: 'Phoenix', state: 'AZ',
     zip: 22222, description: "")
 end

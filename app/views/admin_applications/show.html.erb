@@ -1,3 +1,7 @@
+<h2><%= "Applicants Name: #{@application.name}" %></h2>
+<p><%= @application.street %> <%= @application.city %>, <%= @application.state %>, <%= @application.zip %></p>
+<p><%= @application.description %></p>
+
 <% @pets.each do |pet| %>
   <% ap =  pet.application_pets.find { |ap| ap.application_id == @application.id } %>
   <% if ap.approved == nil %>
@@ -12,8 +16,8 @@
       <% end %>
     <p><%= form_with url: "/admin/applications/#{@application.id}?approved=false", local: true do |form| %>
       <%= form.hidden_field :pet_id, value: "#{pet.id}" %>
-        <%= form.submit "Reject Application for #{pet.name}" %></p>
-      <% end %>
+      <%= form.submit "Reject Application for #{pet.name}" %></p>
+    <% end %>
   <% elsif ap.approved == false %>
     <h3><%= pet.name %></h3>
     <p>Pet Rejected</p>
