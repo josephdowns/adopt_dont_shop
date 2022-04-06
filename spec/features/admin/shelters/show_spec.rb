@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "AdminShelters", type: :feature do
   before (:each) do
-    @shelter_1 = Shelter.create(name: 'Aurora shelter', city: 'Aurora, CO', foster_program: false, rank: 9)
+    @shelter_1 = Shelter.create(name: 'Aurora shelter', city: 'Aurora, CO', street: 'Smoky Hill Rd', zip: 80012, foster_program: false, rank: 9)
     @shelter_2 = Shelter.create(name: 'RGV animal shelter', city: 'Harlingen, TX', foster_program: false, rank: 5)
     @shelter_3 = Shelter.create(name: 'Fancy pets of Colorado', city: 'Denver, CO', foster_program: true, rank: 10)
 
@@ -26,6 +26,7 @@ RSpec.describe "AdminShelters", type: :feature do
 
       expect(page).to have_content(@shelter_1.name)
       expect(page).to have_content(@shelter_1.city)
+
       expect(page).to_not have_content(@shelter_3.name)
     end
 
@@ -65,14 +66,14 @@ RSpec.describe "AdminShelters", type: :feature do
       end
     end
 
-    it "links me to the application" do
+    it "links me to the application show page" do
       visit "/admin/shelters/#{@shelter_3.id}"
 
       within('#action') do
-        click_on "#{@rascal.name}"
+        click_on "#{@app2.name}"
       end
 
-      expect(current_path).to eq("/admin/applications/#{@app1.id}")
+      expect(current_path).to eq("/admin/applications/#{@app2.id}")
     end
   end
 end
