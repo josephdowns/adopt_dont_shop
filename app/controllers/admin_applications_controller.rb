@@ -5,9 +5,8 @@ class AdminApplicationsController < ApplicationController
     if @application.application_pets.map {|ap| ap.approved }.all?(true)
       @application.update(status: "Approved")
       @application.pets.each {|pet| pet.update(adoptable: false) }
-    elsif
-      @application.application_pets.map {|ap| ap.approved }.any?(false) && @application.application_pets.map {|ap| ap.approved }.any?(!nil)
-        @application.update(status: "Rejected")
+    elsif @application.application_pets.map {|ap| ap.approved }.any?(false) && @application.application_pets.map {|ap| ap.approved }.any?(!nil)
+      @application.update(status: "Rejected")
     end
   end
 end
