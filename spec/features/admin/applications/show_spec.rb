@@ -128,6 +128,33 @@ end
       visit "/pets/#{@scrappy.id}"
       expect(page).to have_content("Adoptable? false")
     end
+
+    it 'pets can only have one approved application on them at any time' do
+      visit "/applications/#{@application.id}"
+
+      fill_in("search", with: "Scooby")
+      click_on "Search"
+      click_button "Adopt #{@scooby.name}"
+      fill_in(:description, with: "I like dogs")
+      click_button "Submit my application"
+
+      visit "/applications/#{@application_2.id}"
+
+      fill_in("search", with: "Scooby")
+      click_on "Search"
+      click_button "Adopt #{@scooby.name}"
+      fill_in(:description, with: "I'm a great guy!")
+      click_button "Submit my application"
+
+      visit "/admin/applications/#{@application.id}"
+      click_button "Approve Application for Scooby"
+
+      visit "/admin/applications/#{@application_2.id}"
+      save_and_open_page
+      expect(page).to have_no_button("Approve Application for Scooby")
+      expect(page).to have_content("Pet has been approved for adoption")
+      expect(page).to have_button("Reject Application for Scooby")
+    end
   end
 
 end
