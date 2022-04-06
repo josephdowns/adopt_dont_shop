@@ -105,6 +105,29 @@ end
       click_button "Approve Application for Scrappy"
       expect(page).to have_content("Application Rejected")
     end
+
+    it 'application approval makes pets not adoptable' do
+      visit "/applications/#{@application.id}"
+
+      fill_in("search", with: "Scooby")
+      click_on "Search"
+      click_button "Adopt #{@scooby.name}"
+
+      fill_in("search", with: "Scrappy")
+      click_on "Search"
+      click_button "Adopt #{@scrappy.name}"
+
+      visit "/admin/applications/#{@application.id}"
+      click_button "Approve Application for Scooby"
+      expect(page).to have_no_content("Application Approved")
+      click_button "Approve Application for Scrappy"
+
+      visit "/pets/#{@scooby.id}"
+      expect(page).to have_content("Adoptable? false")
+
+      visit "/pets/#{@scrappy.id}"
+      expect(page).to have_content("Adoptable? false")
+    end
   end
 
 end
